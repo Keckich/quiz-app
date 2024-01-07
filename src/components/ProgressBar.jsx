@@ -13,4 +13,6 @@ export default function ProgressBar({ timer }) {
       clearInterval(interval);
     }
   }, []);
+
+  return <progress value={remainingTime} max={timer} />;
 }
