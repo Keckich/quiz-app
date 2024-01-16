@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 
-export default function ProgressBar({ timer }) {
+export default function ProgressBar({ timeout, onTimeOut }) {
   const INTERVAL_TIME = 10;
-  const [remainingTime, setRemainingTime] = useState(timer);
+  const [remainingTime, setRemainingTime] = useState(timeout);
+
+  useEffect(() => {
+    setTimeout(onTimeOut, timeout);
+  }, [timeout, onTimeOut]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -14,5 +18,5 @@ export default function ProgressBar({ timer }) {
     }
   }, []);
 
-  return <progress value={remainingTime} max={timer} />;
+  return <progress className="question-time" value={remainingTime} max={timeout} />;
 }
